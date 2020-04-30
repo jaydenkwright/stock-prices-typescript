@@ -1,9 +1,15 @@
 import React from 'react'
 
-export default function Stock() {
+interface Props {
+    searchQuery: string;
+}
+
+export const Stock: React.FC<Props> = ({ searchQuery }) => {
+    console.log(searchQuery)
     return (
         <div>
-            
         </div>
     )
 }
+
+export default Stock

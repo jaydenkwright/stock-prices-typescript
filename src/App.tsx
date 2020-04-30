@@ -6,12 +6,13 @@ import Search from './components/Search'
 
 function App() {
   const [stockData, setStockData] = useState([])
-  const [query, setQuery] = useState<string | null>('')
+  const [searchQuery, setSearchQuery] = useState<string>('')
   const [isSearch, setIsSearching] = useState<boolean>(false)
 
   return (
     <div className="App">
-      <Search />
+      <Search searchQuery={setSearchQuery}/>
+      <Stock searchQuery={searchQuery}/>
     </div>
   );
 }
