@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom";
+import styles from './Stock.module.css'
 import axios from 'axios'
 
 export const Stock: React.FC = () => {
@@ -60,7 +61,8 @@ export const Stock: React.FC = () => {
         lastTradeTime: number,
         isUSMarketOpen: boolean
     }
-    const initStockData: stock = {"symbol":"",
+    const initStockData: stock = {
+    "symbol":"",
     "companyName":"",
     "primaryExchange":"",
     "calculationPrice":"",
@@ -140,7 +142,12 @@ export const Stock: React.FC = () => {
     return (
         <div>
             {loaded ?
-                companyName
+                <div>
+                    <div className={styles.title}>{companyName}</div>
+                    <div>{stockData.symbol}</div>
+                    <div>{primaryExchange}</div>
+                </div>
+                
             : 'loading...'
             }
         </div>
