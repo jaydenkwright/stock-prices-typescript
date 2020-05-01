@@ -48,8 +48,8 @@ export const Stock: React.FC = () => {
         iexBidSize: number,
         iexAskPrice: number,
         iexAskSize: number,
-        iexOpen?: any,
-        iexOpenTime?: any,
+        iexOpen?: number | null,
+        iexOpenTime?: number | null,
         iexClose: number,
         iexCloseTime: number,
         marketCap: number,
@@ -60,8 +60,63 @@ export const Stock: React.FC = () => {
         lastTradeTime: number,
         isUSMarketOpen: boolean
     }
+    const initStockData: stock = {"symbol":"",
+    "companyName":"",
+    "primaryExchange":"",
+    "calculationPrice":"",
+    "open":0,
+    "openTime": 0,
+    "openSource":"",
+    "close":0,
+    "closeTime":0,
+    "closeSource":"",
+    "high":0,
+    "highTime":0,
+    "highSource":"",
+    "low":0,
+    "lowTime":0,
+    "lowSource":"",
+    "latestPrice":0,
+    "latestSource":"",
+    "latestTime":"",
+    "latestUpdate":0,
+    "latestVolume":0,
+    "iexRealtimePrice":0,
+    "iexRealtimeSize":0,
+    "iexLastUpdated":0,
+    "delayedPrice":0,
+    "delayedPriceTime":0,
+    "oddLotDelayedPrice":0,
+    "oddLotDelayedPriceTime":0,
+    "extendedPrice":0,
+    "extendedChange":0,
+    "extendedChangePercent":0,
+    "extendedPriceTime":0,
+    "previousClose":0,
+    "previousVolume":0,
+    "change":0,
+    "changePercent":0,
+    "volume":0,
+    "iexMarketPercent":0
+    ,"iexVolume":0,
+    "avgTotalVolume":0,
+    "iexBidPrice":0,
+    "iexBidSize":0,
+    "iexAskPrice":0,
+    "iexAskSize":0,
+    "iexOpen":null,
+    "iexOpenTime":null,
+    "iexClose":0,
+    "iexCloseTime":0,
+    "marketCap":0,
+    "peRatio":0,
+    "week52High":0,
+    "week52Low":0,
+    "ytdChange":0,
+    "lastTradeTime":0,
+    "isUSMarketOpen":false}
     const { symbol } = useParams()
-    const [stockData, setStockData] = useState<stock>({"symbol":"","companyName":".","primaryExchange":"","calculationPrice":"","open":289.98,"openTime":1588253400708,"openSource":"official","close":293.8,"closeTime":1588276800499,"closeSource":"official","high":294.53,"highTime":1588291197990,"highSource":"15 minute delayed price","low":288.35,"lowTime":1588253833057,"lowSource":"15 minute delayed price","latestPrice":293.8,"latestSource":"Close","latestTime":"April 30, 2020","latestUpdate":1588276800499,"latestVolume":44392932,"iexRealtimePrice":297,"iexRealtimeSize":58,"iexLastUpdated":1588278617586,"delayedPrice":293.8,"delayedPriceTime":1588277699554,"oddLotDelayedPrice":292.38,"oddLotDelayedPriceTime":1588279871388,"extendedPrice":286.3,"extendedChange":-7.5,"extendedChangePercent":-0.02553,"extendedPriceTime":1588291197990,"previousClose":287.73,"previousVolume":34320204,"change":6.07,"changePercent":0.0211,"volume":44392932,"iexMarketPercent":0.009173937869208549,"iexVolume":407258,"avgTotalVolume":48387376,"iexBidPrice":0,"iexBidSize":0,"iexAskPrice":0,"iexAskSize":0,"iexOpen":null,"iexOpenTime":null,"iexClose":293.39,"iexCloseTime":1588276796115,"marketCap":1285516024000,"peRatio":23.03,"week52High":327.85,"week52Low":170.27,"ytdChange":-0.020918,"lastTradeTime":1588276799512,"isUSMarketOpen":false})
+    const [stockData, setStockData] = useState<stock>(initStockData)
     const [loaded, setLoaded] = useState<boolean>(false)
     const getStockData = async () => {
         setLoaded(false)
@@ -81,10 +136,11 @@ export const Stock: React.FC = () => {
         getStockData()
     }, [symbol])
 
+    const { companyName, primaryExchange, open, close, } = stockData
     return (
         <div>
             {loaded ?
-            stockData.symbol
+                companyName
             : 'loading...'
             }
         </div>
