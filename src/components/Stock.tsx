@@ -16,7 +16,6 @@ export const Stock: React.FC = () => {
             const res = await axios.get(`https://cloud.iexapis.com/stable/stock/${s}/quote?token=${process.env.REACT_APP_STOCK_KEY}`)
             setStockData(res.data)
             console.log(stockData)
-            console.log(res.data)
             setLoaded(true)
         }catch(err){
             if(err.response.status === 404){
@@ -51,8 +50,7 @@ export const Stock: React.FC = () => {
                         {` ${change} (${roundNumber(changePercent*100)}%)`}
                     </div>
                 </div>
-                : 'error'
-                
+                : 'error'             
             : <div className={styles.loading}></div>
             }
         </div>

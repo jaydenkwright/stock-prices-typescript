@@ -10,15 +10,14 @@ export const Search: React.FC<SearchProps & RouteComponentProps> = ({ searchQuer
 
     const [query, setQuery] = useState<string>('')
 
-    const onChange = (e: any) => {
-        setQuery(e.target.value)
+    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+        setQuery(e.currentTarget.value)
     }
-    const submit = (e: any) => {
+    const submit = (e: React.FormEvent<HTMLInputElement> & React.KeyboardEvent<HTMLDivElement>) => {
         if( e.key === "Enter"){
-            searchQuery(e.target.value)
+            searchQuery(e.currentTarget.value)
             console.log()
-            //return <Redirect to='/fucksksk' />
-            history.push(`/stock/${e.target.value}`)
+            history.push(`/stock/${e.currentTarget.value}`)
         }
     }
 
