@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom";
-import { stock, initStockData } from './Interfaces/StockInterface'
+import { ParamTypes, stock, initStockData } from './Interfaces/StockInterface'
 import styles from './Stock.module.css'
 import axios from 'axios'
 
 export const Stock: React.FC = () => {
-    const { symbol } = useParams()
+    const { symbol } = useParams<ParamTypes>()
     const [stockData, setStockData] = useState<stock>(initStockData)
     const [loaded, setLoaded] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)

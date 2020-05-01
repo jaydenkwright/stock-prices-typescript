@@ -1,3 +1,7 @@
+export interface ParamTypes {
+    symbol: string
+  }
+
 export interface stock{
     symbol: string,
     companyName: string,
