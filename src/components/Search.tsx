@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styles from './Search.module.css'
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-interface SearchProps{ 
-    searchQuery: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const Search: React.FC<SearchProps & RouteComponentProps> = ({ searchQuery, history }) => {
+export const Search: React.FC<RouteComponentProps> = ({ history }) => {
 
     const [query, setQuery] = useState<string>('')
 
@@ -15,8 +11,6 @@ export const Search: React.FC<SearchProps & RouteComponentProps> = ({ searchQuer
     }
     const submit = (e: React.FormEvent<HTMLInputElement> & React.KeyboardEvent<HTMLDivElement>) => {
         if( e.key === "Enter"){
-            searchQuery(e.currentTarget.value)
-            console.log()
             history.push(`/stock/${e.currentTarget.value}`)
         }
     }
@@ -25,12 +19,12 @@ export const Search: React.FC<SearchProps & RouteComponentProps> = ({ searchQuer
         <div>
             <div className={styles.searchBox}>
                 <input 
-                type="text"
-                className={styles.searchBar}
-                placeholder="Search for a stock symbol... ex: AAPL, TSLA, FB..."
-                value={query}
-                onKeyPress={submit}
-                onChange={onChange}
+                    type="text"
+                    className={styles.searchBar}
+                    placeholder="Search for a stock symbol... ex: AAPL, TSLA, FB..."
+                    value={query}
+                    onKeyPress={submit}
+                    onChange={onChange}
                 />
             </div>
         </div>
