@@ -8,6 +8,7 @@ export const Stock: React.FC<Props> = ({ searchQuery }) => {
     console.log(searchQuery)
     return (
         <div>
+            
         </div>
     )
 }
