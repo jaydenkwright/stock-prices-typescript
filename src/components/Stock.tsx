@@ -120,33 +120,50 @@ export const Stock: React.FC = () => {
     const { symbol } = useParams()
     const [stockData, setStockData] = useState<stock>(initStockData)
     const [loaded, setLoaded] = useState<boolean>(false)
-    const getStockData = async () => {
+    const [error, setError] = useState<boolean>(false)
+    const getStockData = async (s: string) => {
+        setError(false)
         setLoaded(false)
         try{
-            const res = await axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.REACT_APP_STOCK_KEY}`)
+            const res = await axios.get(`https://cloud.iexapis.com/stable/stock/${s}/quote?token=${process.env.REACT_APP_STOCK_KEY}`)
             setStockData(res.data)
             console.log(stockData)
             console.log(res.data)
             setLoaded(true)
         }catch(err){
             if(err.response.status === 404){
+                setLoaded(true)
+                setError(true)
                 console.log('Not found')
             }
         }
     }
     useEffect(() => {
-        getStockData()
+        getStockData(symbol)
     }, [symbol])
+ 
+    const roundNumber = (num: number) => {
+        return num.toFixed(2)
+    }
 
-    const { companyName, primaryExchange, open, close, } = stockData
+    const { companyName, primaryExchange, open, close, latestPrice, iexRealtimePrice, change, changePercent }: stock = stockData
     return (
         <div>
             {loaded ?
+                error === false ?
                 <div>
-                    <div className={styles.title}>{companyName}</div>
-                    <div>{stockData.symbol}</div>
-                    <div>{primaryExchange}</div>
+                    <div className={styles.title}>
+                        <h1>{companyName}</h1>
+                    </div>
+                    <div className={styles.symbol}>{primaryExchange}: {stockData.symbol}</div>
+                    <div className={styles.price}>
+                        {iexRealtimePrice ? `$${iexRealtimePrice} ` : `$${latestPrice} `}
+                    </div>
+                    <div className={styles.change}>
+                        {` ${change} (${roundNumber(changePercent*100)})%`}
+                    </div>
                 </div>
+                : 'error'
                 
             : 'loading...'
             }

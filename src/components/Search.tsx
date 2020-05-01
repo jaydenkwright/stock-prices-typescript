@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Search.module.css'
-import { Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface SearchProps{ 
     searchQuery: React.Dispatch<React.SetStateAction<string>>;
