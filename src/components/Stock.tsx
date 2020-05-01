@@ -4,15 +4,18 @@ import axios from 'axios'
 
 export const Stock: React.FC = () => {
     const { symbol } = useParams()
-    console.log(process.env.REACT_APP_STOCK_KEY)
     const getStockData = async () => {
         const res = await axios(`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.REACT_APP_STOCK_KEY}`)
-        console.log(res.data)
+        try{
+            console.log(res.status)
+        }catch(err){
+            console.log(err)
+        }
     }
 
     useEffect(() => {
         getStockData()
-    }, [])
+    }, [symbol])
 
     return (
         <div>
