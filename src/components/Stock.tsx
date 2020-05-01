@@ -142,7 +142,7 @@ export const Stock: React.FC = () => {
         getStockData(symbol)
     }, [symbol])
  
-    const roundNumber = (num: number) => {
+    const roundNumber = (num: number): string => {
         return num.toFixed(2)
     }
 
@@ -160,12 +160,12 @@ export const Stock: React.FC = () => {
                         {iexRealtimePrice ? `$${iexRealtimePrice} ` : `$${latestPrice} `}
                     </div>
                     <div className={styles.change}>
-                        {` ${change} (${roundNumber(changePercent*100)})%`}
+                        {` ${change} (${roundNumber(changePercent*100)}%)`}
                     </div>
                 </div>
                 : 'error'
                 
-            : 'loading...'
+            : <div className={styles.loading}></div>
             }
         </div>
     )
