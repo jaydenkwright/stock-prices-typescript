@@ -15,14 +15,15 @@ function App() {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [isSearch, setIsSearching] = useState<boolean>(false)
 
+  console.log(searchQuery)
   return (
     <Router>
       <div className="App">
-            <Search searchQuery={setSearchQuery}/>
             <Route path="/">
+              <Search searchQuery={setSearchQuery}/>
             </Route>
             <Route path="/stock/:symbol">
-              <Stock searchQuery={searchQuery}/>
+              <Stock />
             </Route>
       </div>
     </Router>

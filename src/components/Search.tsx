@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Search.module.css'
+import { Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
 
-interface SearchProps { 
+interface SearchProps{ 
     searchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Search: React.FC<SearchProps> = ({ searchQuery }) => {
+export const Search: React.FC<SearchProps & RouteComponentProps> = ({ searchQuery, history }) => {
 
     const [query, setQuery] = useState<string>('')
 
@@ -15,6 +16,9 @@ export const Search: React.FC<SearchProps> = ({ searchQuery }) => {
     const submit = (e: any) => {
         if( e.key === "Enter"){
             searchQuery(e.target.value)
+            console.log()
+            //return <Redirect to='/fucksksk' />
+            history.push(`/stock/${e.target.value}`)
         }
     }
 
@@ -34,4 +38,4 @@ export const Search: React.FC<SearchProps> = ({ searchQuery }) => {
     )
 }
 
-export default Search
+export default withRouter(Search)
