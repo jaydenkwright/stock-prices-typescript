@@ -1,6 +1,6 @@
 .stock{
     padding-top: 6em;
-    height: 90vh;
+    height: 100vh;
 }
 
 .title{
@@ -112,6 +112,46 @@
 
 .closeLabel{
     font-weight: 500;
+}
+
+.news{
+    position: absolute;
+    bottom: 0;
+    height: 5em;
+    background-color: #39c9a0;
+    width: 100%;
+}
+
+.newsTitle{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    left: 50%;
+    font-size: 2em;
+    font-weight: 600;
+    transform: translate(-50%, -50%);
+    color: #e0e0e0;
+}
+
+.newsLink{
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+.newsLink{
+    text-decoration: none;
+}
+
+.newsLink:hover{
+    text-decoration: none;
+}
+
+.newsLink:visited{
+    text-decoration: none;
+}
+
+.newsLink:active{
+    text-decoration: none;
 }
 
 .loading {

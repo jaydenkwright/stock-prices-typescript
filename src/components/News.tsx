@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react'
 import styles from './News.module.css'
 import axios from 'axios'
 
-export const News: React.FC =() => {
+interface Props{
+    companyName: string,
+    symbol: string
+}
+
+export const News: React.FC<Props> =({ companyName, symbol}) => {
+
 
     interface article{
         author: string,
@@ -18,15 +24,15 @@ export const News: React.FC =() => {
         urlToImage: string
     }
 
+    console.log(symbol)
+
     const [newsData, setNewsData] = useState<article[]>([])
 
     const getNewsData = async (): Promise<void> => {
         try{
-            const res = await axios.get(`https://newsapi.org/v2/everything?q=google&apiKey=${process.env.REACT_APP_NEWS_KEY}`)
+            const res = await axios.get(`https://newsapi.org/v2/everything?q=${companyName}&apiKey=${process.env.REACT_APP_NEWS_KEY}&language=en&pageSize=5`)
             console.log(res.data.articles)
             setNewsData(res.data.articles)
-            console.log(newsData)
-            //res.data.articles.map((article: any) => console.log(article.title))
         }catch(err){
             
         }
@@ -34,15 +40,15 @@ export const News: React.FC =() => {
 
     useEffect(() => {
         getNewsData()
-    }, [])
+    }, [symbol])
     return (
-        <div className={styles.news}>
+        <div className={styles.news} id="news">
             <div className={styles.newsTitle}>
                 News
-                {
+            </div>
+            {
                     newsData.map((a: any) => <div>{a.title}</div>)
                 }
-            </div>
         </div>
     )
 }

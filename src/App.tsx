@@ -16,7 +16,6 @@ function App() {
         </Route>
         <Route path="/stock/:symbol">
           <Stock />
-          <News />
         </Route>
       </div>
     </Router>

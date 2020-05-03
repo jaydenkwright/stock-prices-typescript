@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ParamTypes, stock, initStockData } from './Interfaces/StockInterface'
+import News from './News'
 import styles from './Stock.module.css'
 import axios from 'axios'
+
+
 
 export const Stock: React.FC = () => {
     const { symbol } = useParams<ParamTypes>()
@@ -33,6 +36,12 @@ export const Stock: React.FC = () => {
         return num.toFixed(2)
     }
 
+    const scroll = (): void => {
+        document.getElementById('news').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
     const { companyName, 
             primaryExchange, 
             open, 
@@ -45,52 +54,60 @@ export const Stock: React.FC = () => {
             low 
             }: stock = stockData
     return (
-        <div className={styles.stock}>
+        <div>
             {loaded ?
                 error === false ?
                 <div>
-                    <div className={styles.title}>
-                        <h1>{companyName}</h1>
-                    </div>
-                    <div className={styles.symbol}>{primaryExchange}: {stockData.symbol}</div>
-                    <div className={styles.price}>
-                        {iexRealtimePrice ? `$${iexRealtimePrice} ` : `$${latestPrice} `}
-                    </div>
-                    <div className={styles.change}>
-                        {` ${change} (${roundNumber(changePercent*100)}%)`}
-                    </div>
-                    {high && low ? 
-                        <div className={styles.highLow}>
-                            <div className={styles.low}>
-                                <div className={styles.lowText}>{`$${roundNumber(low)}`}</div>
-                                <div className={styles.lowLabel}>Low</div>
-                            </div>
-                            <div className={styles.high}>
-                                <div className={styles.highText}>{`$${roundNumber(high)}`}</div>
-                                <div className={styles.highLabel}>High</div>
-                            </div>
-                        </div> 
-                    : null}
-                    {open && close ?
-                        <div className={styles.openClose}>
-                            <div className={styles.open}>
-                                <div className={styles.openText}>
-                                    {`$${roundNumber(open)}`}
-                                </div>
-                                <div className={styles.openLabel}>
-                                    Open
-                                </div>    
-                            </div>
-                            <div className={styles.low}>
-                                <div className={styles.lowText}>
-                                    {`$${roundNumber(close)}`}
-                                </div>
-                                <div className={styles.lowLabel}>
-                                    Close
-                                </div>    
-                            </div>
+                    <div className={styles.stock}>
+                        <div className={styles.title}>
+                            <h1>{companyName}</h1>
                         </div>
-                    : null}
+                        <div className={styles.symbol}>{primaryExchange}: {stockData.symbol}</div>
+                        <div className={styles.price}>
+                            {iexRealtimePrice ? `$${iexRealtimePrice} ` : `$${latestPrice} `}
+                        </div>
+                        <div className={styles.change}>
+                            {` ${change} (${roundNumber(changePercent*100)}%)`}
+                        </div>
+                        {high && low ? 
+                            <div className={styles.highLow}>
+                                <div className={styles.low}>
+                                    <div className={styles.lowText}>{`$${roundNumber(low)}`}</div>
+                                    <div className={styles.lowLabel}>Low</div>
+                                </div>
+                                <div className={styles.high}>
+                                    <div className={styles.highText}>{`$${roundNumber(high)}`}</div>
+                                    <div className={styles.highLabel}>High</div>
+                                </div>
+                            </div> 
+                        : null}
+                        {open && close ?
+                            <div className={styles.openClose}>
+                                <div className={styles.open}>
+                                    <div className={styles.openText}>
+                                        {`$${roundNumber(open)}`}
+                                    </div>
+                                    <div className={styles.openLabel}>
+                                        Open
+                                    </div>    
+                                </div>
+                                <div className={styles.low}>
+                                    <div className={styles.lowText}>
+                                        {`$${roundNumber(close)}`}
+                                    </div>
+                                    <div className={styles.lowLabel}>
+                                        Close
+                                    </div>    
+                                </div>
+                            </div>
+                        : null}
+                        <div className={styles.news}>
+                            <div className={styles.newsTitle}>
+                                <Link to="#" className={styles.newsLink} onClick={scroll}>News</Link>
+                            </div>
+                        </div>    
+                    </div>
+                    <News companyName={companyName} symbol={symbol}/>
                 </div>
                 : 'error'             
             : <div className={styles.loading}></div>
