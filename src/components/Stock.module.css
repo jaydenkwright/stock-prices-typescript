@@ -1,9 +1,14 @@
+.stock{
+    padding-top: 6em;
+    height: 90vh;
+}
+
 .title{
     padding-top: 0em;
     font-family: helvetica;
     font-size: 3em;
     color: #e0e0e0;
-    margin: 0em auto auto auto;
+    margin: auto auto auto auto;
     transition: 0.8s ease-out;
     animation: fadeIn .5s ease;
   }
@@ -35,7 +40,7 @@
 
 .highLow{
     display: flex;
-    margin: 2em auto auto auto;
+    margin: 1em auto auto auto;
     width: 20vw;
 }
 
@@ -73,7 +78,7 @@
 
 .openClose{
     display: flex;
-    margin: 2em auto auto auto;
+    margin: 1em auto auto auto;
     width: 20vw;
 }
 
@@ -109,38 +114,6 @@
     font-weight: 500;
 }
 
-  .info{
-    font-family: helvetica;
-    font-Size: 3em;
-    color: #e0e0e0;
-    margin: 0em;
-    transition: 0.8s ease-out;
-  }
-
-  .downPrice{
-    font-family: helvetica;
-    color: #ff2e63;
-    font-size: "5em"
-  }
-
-.openClosePrice{
-    padding: 1em;
-    font-family: helvetica;
-    font-Size: 2em;
-    color: #e0e0e0;
-    margin: 0em;
-}
-
-.stockNewsBox{
-    font-family: helvetica;
-    margin: 1em;
-    background-Color: #39c9a0;
-    border-Radius: 8px 8px 8px 8px;
-    color: #e0e0e0;
-    padding: 0.5em;
-    transition: 0.9s ease-out;
-}
-
 .loading {
     border: 16px solid #e0e0e0; /* Light grey */
     border-top: 16px solid #ffffff; /* Blue */
@@ -151,20 +124,21 @@
     margin:auto;
   }
   
-  @keyframes spin {
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-
-@media only screen and (min-width: 1000px) {
-    .stockNewsBox{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    }
 }
 
 @media only screen and (max-width: 1000px){
+    .title{
+        font-size: 2em;
+    }
+    .symbol{
+        font-size: 1.5em;
+    }
+    .price{
+        font-size: 2.5em;
+    }
     .highLow{
         width: 15em;
     }

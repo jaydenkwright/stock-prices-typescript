@@ -45,7 +45,7 @@ export const Stock: React.FC = () => {
             low 
             }: stock = stockData
     return (
-        <div>
+        <div className={styles.stock}>
             {loaded ?
                 error === false ?
                 <div>

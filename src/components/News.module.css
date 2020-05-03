@@ -1,0 +1,13 @@
+.news{
+    background-color: #39c9a0;
+    min-height: 110vh;
+}
+
+.newsTitle{
+    padding: .5em 0 0 0;
+    font-family: Helvetica;
+    color: #e0e0e0;
+    font-size: 2em;
+    font-weight: 600;
+}
+

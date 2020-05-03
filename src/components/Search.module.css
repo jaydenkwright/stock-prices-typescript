@@ -1,6 +1,7 @@
 .searchBox {
     width: 100%;
     margin: 0 0 2em;
+    position: fixed;
 }
   
 .searchBar {
