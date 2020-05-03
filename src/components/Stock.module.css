@@ -3,7 +3,7 @@
     font-family: helvetica;
     font-size: 3em;
     color: #e0e0e0;
-    margin: auto auto .5em auto;
+    margin: auto;
     transition: 0.8s ease-out;
     animation: fadeIn .5s ease;
   }
@@ -31,6 +31,44 @@
     font-size: 2em;
     font-weight: 500;  
     animation: fadeIn 2s ease;
+}
+
+.highLow{
+    display: flex;
+    margin: 2em auto auto auto;
+    width: 20vw;
+}
+
+.low{
+    flex: 1;
+    font-family: Helvetica;
+    font-size: 1.5em;
+    color: #e0e0e0;
+    animation: fadeIn 2s ease;
+}
+
+.lowText{
+    font-weight: 600;  
+}
+
+.lowLabel{
+    font-weight: 500;  
+}
+
+.high{
+    flex: 1;
+    font-family: Helvetica;
+    font-size: 1.5em;
+    color: #e0e0e0;
+    animation: fadeIn 2s ease;
+}
+
+.highText{
+    font-weight: 600;
+}
+
+.highLabel{
+    font-weight: 500;
 }
 
   .info{
@@ -85,6 +123,12 @@
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    .highLow{
+        width: 15em;
     }
 }
 
