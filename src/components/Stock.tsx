@@ -17,7 +17,6 @@ export const Stock: React.FC = () => {
             setStockData(res.data)
             console.log(stockData)
             setLoaded(true)
-            console.log(`https://cloud.iexapis.com/stable/stock/${s}/quote?token=${process.env.REACT_APP_STOCK_KEY}`)
         }catch(err){
             if(err.response.status === 404){
                 setLoaded(true)
@@ -34,7 +33,17 @@ export const Stock: React.FC = () => {
         return num.toFixed(2)
     }
 
-    const { companyName, primaryExchange, open, close, latestPrice, iexRealtimePrice, change, changePercent, high, low }: stock = stockData
+    const { companyName, 
+            primaryExchange, 
+            open, 
+            close,
+            latestPrice, 
+            iexRealtimePrice, 
+            change, 
+            changePercent, 
+            high, 
+            low 
+            }: stock = stockData
     return (
         <div>
             {loaded ?
@@ -50,17 +59,37 @@ export const Stock: React.FC = () => {
                     <div className={styles.change}>
                         {` ${change} (${roundNumber(changePercent*100)}%)`}
                     </div>
-                    {high ? 
-                    <div className={styles.highLow}>
-                        <div className={styles.low}>
-                            <div className={styles.lowText}>{low}</div>
-                            <div className={styles.lowLabel}>Low</div>
+                    {high && low ? 
+                        <div className={styles.highLow}>
+                            <div className={styles.low}>
+                                <div className={styles.lowText}>{`$${roundNumber(low)}`}</div>
+                                <div className={styles.lowLabel}>Low</div>
+                            </div>
+                            <div className={styles.high}>
+                                <div className={styles.highText}>{`$${roundNumber(high)}`}</div>
+                                <div className={styles.highLabel}>High</div>
+                            </div>
+                        </div> 
+                    : null}
+                    {open && close ?
+                        <div className={styles.openClose}>
+                            <div className={styles.open}>
+                                <div className={styles.openText}>
+                                    {`$${roundNumber(open)}`}
+                                </div>
+                                <div className={styles.openLabel}>
+                                    Open
+                                </div>    
+                            </div>
+                            <div className={styles.low}>
+                                <div className={styles.lowText}>
+                                    {`$${roundNumber(close)}`}
+                                </div>
+                                <div className={styles.lowLabel}>
+                                    Close
+                                </div>    
+                            </div>
                         </div>
-                        <div className={styles.high}>
-                            <div className={styles.highText}>{high}</div>
-                            <div className={styles.highLabel}>High</div>
-                        </div>
-                    </div> 
                     : null}
                 </div>
                 : 'error'             

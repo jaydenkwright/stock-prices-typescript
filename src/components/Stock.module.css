@@ -3,7 +3,7 @@
     font-family: helvetica;
     font-size: 3em;
     color: #e0e0e0;
-    margin: auto;
+    margin: 0em auto auto auto;
     transition: 0.8s ease-out;
     animation: fadeIn .5s ease;
   }
@@ -71,6 +71,44 @@
     font-weight: 500;
 }
 
+.openClose{
+    display: flex;
+    margin: 2em auto auto auto;
+    width: 20vw;
+}
+
+.open{
+    flex: 1;
+    font-family: Helvetica;
+    font-size: 1.5em;
+    color: #e0e0e0;
+    animation: fadeIn 2s ease;
+}
+
+.openText{
+    font-weight: 600;  
+}
+
+.openLabel{
+    font-weight: 500;  
+}
+
+.close{
+    flex: 1;
+    font-family: Helvetica;
+    font-size: 1.5em;
+    color: #e0e0e0;
+    animation: fadeIn 2s ease;
+}
+
+.closeText{
+    font-weight: 600;
+}
+
+.closeLabel{
+    font-weight: 500;
+}
+
   .info{
     font-family: helvetica;
     font-Size: 3em;
@@ -128,6 +166,9 @@
 
 @media only screen and (max-width: 1000px){
     .highLow{
+        width: 15em;
+    }
+    .openClose{
         width: 15em;
     }
 }
