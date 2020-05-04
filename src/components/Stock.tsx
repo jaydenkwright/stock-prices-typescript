@@ -101,7 +101,7 @@ export const Stock: React.FC = () => {
                                 </div>
                             </div>
                         : null}
-                        <div className={styles.news}>
+                        <div className={styles.news} id="news">
                             <div className={styles.newsTitle}>
                                 <Link to="#" className={styles.newsLink} onClick={scroll}>News</Link>
                             </div>

@@ -2,6 +2,7 @@
     width: 100%;
     margin: 0 0 2em;
     position: fixed;
+    z-index: 1;
 }
   
 .searchBar {

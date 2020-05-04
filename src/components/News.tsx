@@ -30,7 +30,7 @@ export const News: React.FC<Props> =({ companyName, symbol}) => {
 
     const getNewsData = async (): Promise<void> => {
         try{
-            const res = await axios.get(`https://newsapi.org/v2/everything?q=${companyName}&apiKey=${process.env.REACT_APP_NEWS_KEY}&language=en&pageSize=5`)
+            const res = await axios.get(`https://newsapi.org/v2/everything?q=${companyName}&apiKey=${process.env.REACT_APP_NEWS_KEY}&language=en&pageSize=10`)
             console.log(res.data.articles)
             setNewsData(res.data.articles)
         }catch(err){
@@ -42,13 +42,20 @@ export const News: React.FC<Props> =({ companyName, symbol}) => {
         getNewsData()
     }, [symbol])
     return (
-        <div className={styles.news} id="news">
-            <div className={styles.newsTitle}>
-                News
-            </div>
+        <div className={styles.news}>
             {
-                    newsData.map((a: any) => <div>{a.title}</div>)
-                }
+                newsData.map((article: any) => (
+                    <div className={styles.newsContainer}>
+                        <div className={styles.title}>
+                            <a href={`${article.url}`} className={styles.links} target='_blank' rel="noopener noreferrer">{article.title}</a>
+                        </div>
+                        <div className={styles.description}>
+                            {article.description.replace(/(<([^>]+)>)/ig,"")}
+                        </div>
+                    </div>
+                    )
+                )
+            }
         </div>
     )
 }
